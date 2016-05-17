@@ -12,6 +12,7 @@
 
     <modules>
         <module>guava</module>
+        <module>java8</module>
     </modules>
 
     <properties>
