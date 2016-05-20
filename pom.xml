@@ -13,6 +13,7 @@
     <modules>
         <module>guava</module>
         <module>java8</module>
+        <module>type-safe</module>
     </modules>
 
     <properties>
