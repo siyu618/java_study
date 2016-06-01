@@ -14,6 +14,7 @@
         <module>guava</module>
         <module>java8</module>
         <module>type-safe</module>
+        <module>jvm</module>
     </modules>
 
     <properties>
