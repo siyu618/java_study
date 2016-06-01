@@ -133,15 +133,15 @@ public class Then {
 //        return sequence(futureList);
 //    }
 
-//
-//    public static <T> CompletableFuture<List<T>> sequence(List<CompletableFuture<T>> futures) {
-//        CompletableFuture<Void> allDoneFuture = CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()]));
-//        return allDoneFuture.thenApply(v -> futures.stream().map(CompletableFuture::join).collect(Collectors.<T>toList()));
-//    }
-//    public static <T> CompletableFuture<Stream<T>> sequence(Stream<CompletableFuture<T>> futures) {
-//        List<CompletableFuture<T>> futureList = futures.filter(f -> f != null).collect(Collectors.toList());
-//        return sequence(futureList);
-//    }
+
+    public static <T> CompletableFuture<List<T>> sequence(List<CompletableFuture<T>> futures) {
+        CompletableFuture<Void> allDoneFuture = CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()]));
+        return allDoneFuture.thenApply(v -> futures.stream().map(CompletableFuture::join).collect(Collectors.<T>toList()));
+    }
+    public static <T> CompletableFuture<List<T>> sequence(Stream<CompletableFuture<T>> futures) {
+        List<CompletableFuture<T>> futureList = futures.filter(f -> f != null).collect(Collectors.toList());
+        return sequence(futureList);
+    }
 
     public static <T> CompletableFuture<T> toCompletable(Future<T> future, Executor executor) {
         return CompletableFuture.supplyAsync(() -> {
