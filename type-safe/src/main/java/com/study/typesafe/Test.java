@@ -18,6 +18,7 @@ public class Test {
 
         System.out.println(System.getProperty("user.dir"));
         System.out.println(config);
+        System.out.println(GsonFactory.getPrettyGson().toJson(config));
         Config rootConfig = ConfigFactory.load();
         Properties properties = new Properties();
         if (rootConfig.hasPath("interests-engine")
