@@ -17,6 +17,7 @@
         <module>jvm</module>
         <module>thrift</module>
         <module>thrift-idl</module>
+        <module>consistent_hash</module>
     </modules>
 
     <properties>
