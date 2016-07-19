@@ -56,6 +56,7 @@
         <guava.version>19.0</guava.version>
         <thrift.version>0.9.3</thrift.version>
         <maven-thrift-plugin.version>0.1.11</maven-thrift-plugin.version>
+        <nifty-core.version>0.20.0</nifty-core.version>
     </properties>
 
     <build>

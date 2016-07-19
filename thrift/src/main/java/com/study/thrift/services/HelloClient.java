@@ -1,6 +1,6 @@
 package com.study.thrift.services;
 
-import com.study.thrift.demo.HelloWorldService;
+import com.study.thrift.demo.Hello;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
@@ -8,16 +8,16 @@ import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 
 /**
- * Created by tianyuzhi on 16/7/12.
+ * Created by tianyuzhi on 16/7/19.
  */
-public class Client {
+public class HelloClient {
     public static void main(String[] args) throws TException {
         TTransport transport = new TSocket("localhost", 7911);
-        TProtocol protocol = new TBinaryProtocol(transport);
-        HelloWorldService.Client client = new HelloWorldService.Client(protocol);
         transport.open();
-        System.out.println("Client calls hello");
-        System.out.println(client.sayHello("【Server】"));
+        TProtocol protocol = new TBinaryProtocol(transport);
+        Hello.Client client = new Hello.Client(protocol);
+        client.helloVoid();
         transport.close();
+
     }
 }

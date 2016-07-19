@@ -27,6 +27,13 @@
             <artifactId>libthrift</artifactId>
             <version>${thrift.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.facebook.nifty/nifty-core -->
+        <dependency>
+            <groupId>com.facebook.nifty</groupId>
+            <artifactId>nifty-core</artifactId>
+            <version>${nifty-core.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -20,6 +20,6 @@
             <version>${guava.version}</version>
         </dependency>
     </dependencies>
-    
+
 
 </project>
