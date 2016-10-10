@@ -8,6 +8,14 @@ import com.google.common.base.Optional;
  */
 public class OptionalTest {
     public static void main(String[] args) {
+        Optional<Integer> ai = Optional.fromNullable(null);
+        System.out.println(ai.orNull());
+
+        Optional<Integer> bi = Optional.fromNullable(3);
+        System.out.println(bi.orNull());
+
+
+
         OptionalTest optionalTest = new OptionalTest();
         Integer v1 = null;
         Integer v2 = new Integer(10);
@@ -20,6 +28,7 @@ public class OptionalTest {
 
 
     public Integer sum(Optional<Integer> a, Optional<Integer> b) {
+        System.out.println();
         System.out.println("first param isPresent : " + a.isPresent());
         System.out.println("second param isPresent : " + b.isPresent());
         Integer v1 = a.or(0);
