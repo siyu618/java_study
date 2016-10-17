@@ -1,4 +1,4 @@
-package java;
+package com.study.examples;
 
 /**
  * Created by tianyuzhi on 16/10/9.
