@@ -5,7 +5,7 @@ package com.study.concurrenty.thread_fairness;
  */
 public class Synchronizer {
     Lock lock = new Lock();
-    public void doSynchronized() {
+    public void doSynchronized() throws InterruptedException {
         this.lock.lock();
         //
         this.lock.unlock();
