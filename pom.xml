@@ -18,6 +18,7 @@
         <module>thrift</module>
         <module>thrift-idl</module>
         <module>consistent_hash</module>
+        <module>easy-client</module>
     </modules>
 
     <properties>
