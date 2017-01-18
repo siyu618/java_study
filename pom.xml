@@ -20,6 +20,7 @@
         <module>consistent_hash</module>
         <module>easy-client</module>
         <module>metrics</module>
+        <module>networking</module>
     </modules>
 
     <properties>
