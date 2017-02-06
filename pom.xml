@@ -21,6 +21,7 @@
         <module>easy-client</module>
         <module>metrics</module>
         <module>networking</module>
+        <module>direct-memory</module>
     </modules>
 
     <properties>
