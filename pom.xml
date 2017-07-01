@@ -11,6 +11,7 @@
     <description>parent pom for the java study</description>
 
     <modules>
+        <module>annotations</module>
         <module>guava</module>
         <module>java8</module>
         <module>type-safe</module>
@@ -22,6 +23,9 @@
         <module>metrics</module>
         <module>networking</module>
         <module>direct-memory</module>
+        <module>zookeeper</module>
+        <module>metrics</module>
+        <module>TheArtOfJavaConcurrencyProgramming</module>
     </modules>
 
     <properties>
@@ -61,6 +65,9 @@
         <thrift.version>0.9.3</thrift.version>
         <maven-thrift-plugin.version>0.1.11</maven-thrift-plugin.version>
         <nifty-core.version>0.20.0</nifty-core.version>
+        <log4j.log4j.version>1.2.16</log4j.log4j.version>
+        <zookeeper.version>3.4.10</zookeeper.version>
+        <typesafe.config.version>1.3.0</typesafe.config.version>
     </properties>
 
     <dependencies>
@@ -73,8 +80,31 @@
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.log4j.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.typesafe</groupId>
+                <artifactId>config</artifactId>
+                <version>${typesafe.config.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+
 
     <build>
         <plugins>
