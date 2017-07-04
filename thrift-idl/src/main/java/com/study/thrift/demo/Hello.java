@@ -795,7 +795,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
+       * Find the _Fields constant that match fieldId, or null if its not found.
        */
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
@@ -807,7 +807,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
+       * Find the _Fields constant that match fieldId, throwing an exception
        * if it is not found.
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
@@ -817,7 +817,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches name, or null if its not found.
+       * Find the _Fields constant that match name, or null if its not found.
        */
       public static _Fields findByName(String name) {
         return byName.get(name);
@@ -1156,7 +1156,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
+       * Find the _Fields constant that match fieldId, or null if its not found.
        */
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
@@ -1168,7 +1168,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
+       * Find the _Fields constant that match fieldId, throwing an exception
        * if it is not found.
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
@@ -1178,7 +1178,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches name, or null if its not found.
+       * Find the _Fields constant that match name, or null if its not found.
        */
       public static _Fields findByName(String name) {
         return byName.get(name);
@@ -1517,7 +1517,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
+       * Find the _Fields constant that match fieldId, or null if its not found.
        */
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
@@ -1529,7 +1529,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
+       * Find the _Fields constant that match fieldId, throwing an exception
        * if it is not found.
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
@@ -1539,7 +1539,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches name, or null if its not found.
+       * Find the _Fields constant that match name, or null if its not found.
        */
       public static _Fields findByName(String name) {
         return byName.get(name);
@@ -1876,7 +1876,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
+       * Find the _Fields constant that match fieldId, or null if its not found.
        */
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
@@ -1888,7 +1888,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
+       * Find the _Fields constant that match fieldId, throwing an exception
        * if it is not found.
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
@@ -1898,7 +1898,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches name, or null if its not found.
+       * Find the _Fields constant that match name, or null if its not found.
        */
       public static _Fields findByName(String name) {
         return byName.get(name);
@@ -2237,7 +2237,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
+       * Find the _Fields constant that match fieldId, or null if its not found.
        */
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
@@ -2249,7 +2249,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
+       * Find the _Fields constant that match fieldId, throwing an exception
        * if it is not found.
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
@@ -2259,7 +2259,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches name, or null if its not found.
+       * Find the _Fields constant that match name, or null if its not found.
        */
       public static _Fields findByName(String name) {
         return byName.get(name);
@@ -2596,7 +2596,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
+       * Find the _Fields constant that match fieldId, or null if its not found.
        */
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
@@ -2608,7 +2608,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
+       * Find the _Fields constant that match fieldId, throwing an exception
        * if it is not found.
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
@@ -2618,7 +2618,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches name, or null if its not found.
+       * Find the _Fields constant that match name, or null if its not found.
        */
       public static _Fields findByName(String name) {
         return byName.get(name);
@@ -2955,7 +2955,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
+       * Find the _Fields constant that match fieldId, or null if its not found.
        */
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
@@ -2965,7 +2965,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
+       * Find the _Fields constant that match fieldId, throwing an exception
        * if it is not found.
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
@@ -2975,7 +2975,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches name, or null if its not found.
+       * Find the _Fields constant that match name, or null if its not found.
        */
       public static _Fields findByName(String name) {
         return byName.get(name);
@@ -3203,7 +3203,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
+       * Find the _Fields constant that match fieldId, or null if its not found.
        */
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
@@ -3213,7 +3213,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
+       * Find the _Fields constant that match fieldId, throwing an exception
        * if it is not found.
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
@@ -3223,7 +3223,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches name, or null if its not found.
+       * Find the _Fields constant that match name, or null if its not found.
        */
       public static _Fields findByName(String name) {
         return byName.get(name);
@@ -3451,7 +3451,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
+       * Find the _Fields constant that match fieldId, or null if its not found.
        */
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
@@ -3461,7 +3461,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
+       * Find the _Fields constant that match fieldId, throwing an exception
        * if it is not found.
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
@@ -3471,7 +3471,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches name, or null if its not found.
+       * Find the _Fields constant that match name, or null if its not found.
        */
       public static _Fields findByName(String name) {
         return byName.get(name);
@@ -3701,7 +3701,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
+       * Find the _Fields constant that match fieldId, or null if its not found.
        */
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
@@ -3713,7 +3713,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
+       * Find the _Fields constant that match fieldId, throwing an exception
        * if it is not found.
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
@@ -3723,7 +3723,7 @@ public class Hello {
       }
 
       /**
-       * Find the _Fields constant that matches name, or null if its not found.
+       * Find the _Fields constant that match name, or null if its not found.
        */
       public static _Fields findByName(String name) {
         return byName.get(name);

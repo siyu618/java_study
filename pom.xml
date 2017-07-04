@@ -26,6 +26,7 @@
         <module>zookeeper</module>
         <module>metrics</module>
         <module>TheArtOfJavaConcurrencyProgramming</module>
+        <module>NumberGame</module>
     </modules>
 
     <properties>
