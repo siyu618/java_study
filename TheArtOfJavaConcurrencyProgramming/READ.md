@@ -1,4 +1,4 @@
-**Chapter1**
+**Chapter 1 并发编程的挑战**
 
 *1.1 Context Switch(上下文切换)*
    * 无锁并发
@@ -27,7 +27,7 @@
       * 找到瓶颈
       
 
-**Chapter 2**
+**Chapter 2 Java并发机制的底层实现原理**
 
 *2.1* volatile 的应用
    * cpu术语
@@ -134,7 +134,7 @@
       * 使用锁机制实现原子操作
          * 除了偏向锁，很多锁都用了循环CAS
 
-**Chapter 3**
+**Chapter 3 Java内存模型**
 
 *3.1* Java内存模型的基础
 
