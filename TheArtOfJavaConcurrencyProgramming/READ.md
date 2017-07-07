@@ -360,8 +360,103 @@
     
 
 
+**Chapter 4 Java 并发编程基础**
 
+*4.1 线程简介*
+   * 什么是线程
+      * light weight process
+   * 为什么要使用多线程
+      * 更多的处理器核心
+      * 更快的相应时间
+      * 更好的编程模型
+   * 线程优先级
+      * priority [1，10]
+   * 线程的状态
+      * NEW：初始状态，还没调用start()
+      * RUNNABLE：运行状态，包含就绪和运行，统称运行中
+      * BLOCKED：阻塞状态，表示线程阻塞与锁
+      * WAITING：等待状态，表示线程进入等待状态，进入该状态表示当前线程需要等待其他线程做出一些特定动作（通知或中断）
+      * TIME_WAITING：超时等待状态，其可以再指定时间内返回
+      * TERMINATED：终止状态
+   * Daemon线程
+      * 程序退出时，Daemon线程中finally块不一定会执行
+      
+*4.2 启动和终止线程*
+   * 构造线程
+      * parent thread为子线程设置好daemon，priority等
+   * 启动
+      * start()，线程最好设置名字，这样好debug问题，jstack
+   * 理解中断
+      * 声明抛出InterruptedException的方法，这些方法在抛出异常之前，jvm会线程程序中的中断标识清除
+   * 过期的suspend，resume，stop
+      * 过期的主要原因：
+         * suspend掉用户，线程不会释放已经占有的资源（比如锁），容易引发死锁
+         * stop，终结线程是，也不是释放资源
+   * 安全地终止线程
+      * 除了interrupt，还可以用boolean变量来控制是否需要停止任务并终止该线程
 
+*4.3 线程间通信*
+   * volatile和synchronized关键字
+      * 同步块使用monitorenter和monitorexit指令
+      * 同步方法依靠方法修饰符上的ACC_SYNCHRONIZED来完成
+      * 任意一个对象都有自己的监视器
+         * 同步队列
+   * 等待/通知机制
+      * 生产者和消费者
+         * 消费者自旋
+            * 问题：难以保证及时性
+            * 问题：难以降低开销
+      * 相关方法
+         * notify
+         * notifyAll
+         * wait
+         * wait(long)
+         * wait(long, int)
+         * 上述方法需要在获取锁之后调用 [[why](https://stackoverflow.com/questions/2779484/why-must-wait-always-be-in-synchronized-block])]
+            * 需要放入对象的wait pool 
+               * 需要同步语义，不然会导致并发上的错误。 
+   * 等待/通知的经典范式
+      * 等待方原则
+         * 获取对象的锁
+         * 如果条件不满足，则调用对象的wait方法，被通知仍然要检查条件
+         * 条件满足则执行对应的逻辑
+         ```java
+         synchronized(obj) {
+         while( condition not ready) {
+            obj.wait()
+         }
+         stuff()
+      * 通知方原则
+          * 获取对象的锁
+          * 改变条件
+          * 通知所有等待在对象上的线程
+          ```java
+          synchronized(obj) {
+             change condition : make condition ready
+             obj.notify()
+          }
+   * 管道输入/输出流
+      * PipedOutputStream, PipedInputStream
+          * 字节流
+      * PipedReader, PipedWriter
+          * 字符
+   * Thread.join()的使用
+   * ThreadLocal的使用
+
+*4.4 线程应用实例*
+   * 等待超时模式
+      ```java
+      public synchronized Object get(long mills) throws InterruptedException {
+        long future = System.currentTimeMills() + mills;
+        long remaining = mills;
+        while ((reuslt == null) && remaining > 0){
+             wait(remaining);
+             remaining = future - System.currentTimeMills();
+        }
+      }
+   * 简单数据库连接池实例
+   * 线程池技术及其示例
+   * 基于线程池技术的简单Web服务器
 
 
 
