@@ -457,7 +457,95 @@
    * 简单数据库连接池实例
    * 线程池技术及其示例
    * 基于线程池技术的简单Web服务器
+   
+**Chapter 5 Java中的锁**
 
+*5.1 Lock接口*
+   * 较之于synchronized
+      * 缺少了隐式获取与释放的便捷性
+      * 增加了所获取与释放的可操作性、可中断的获取所以及超时获取锁等多种synchronized关键字锁不具备的特性
+         * 更加灵活
+   * 主要新增特性
+      * 尝试非阻塞地获取锁
+      * 能被终端地获取锁
+      * 超时获取锁
+   * api
+      * lock()：阻塞获取锁
+      * lockInterruptibly()：相应中断
+      * tryLock(): 立即返回，成功或失败获取锁
+      * tryLock(long time，TimeUnit unit): 超时获取锁，超时时间内获取锁、当前线程被中断、超时时间结束
+      * unlock()：释放锁
+      * Condition newCondition(): 调用conditon.wait()前提是获取锁, 调用之后释放锁
+
+*5.2 队列同步器*       Doug Lea 
+   * AbstractQueuedSynchronized（AQS）
+      * int 变量表示同步状态
+      * FIFO队列完成资源获取线程的排队工作
+      * 通过继承来使用
+      * 推荐定义为自定义同步组件的静态内部类
+      * 同步器与锁的关系
+         * 锁是面向使用者的，定义了使用者与锁交互的接口
+         * 同步器是面向锁的实现者
+   * 队列同步器的接口与实例
+      * 需要使用的接口
+         * getState
+         * setState
+         * compareAndSetState(int except, int update)
+      * 同步器可重写的方法
+         * tryAccquire(int arg)： 独占是获取同步状态
+         * tryRelease(int arg)： 独占式释放同步状态
+         * tryAccquireShared(int arg)：共享式获取同步状态
+         * tryReleaseShared(int arg)：共享式释放同步状态
+         * isHeldExclusively()：当前线程是否在独占模式下被线程占用
+      * 同步器提供的模板方法
+         * 独占式获取和释放同步状态
+         * 共享式获取和释放同步状态
+         * 查询同步队列中的等待线程状态
+   * 队列同步器的实现分析
+      * 同步队列
+         * Node：为同步队列和等待队列公用的数据结构
+            * waitStatus：CANNCELLED、SIGNAL、CONDITION、PROPAGATE、INITIAL
+            * Node prev
+            * Node next
+            * Node nextWaiter：等待队列中的后继结点
+            * Thread thread： 获取同步状态的线程
+         * compareAndSetTail(Node except, Node update)
+         * 遵循FIFO，首节点是获取同步状态成功的节点，首节点线程在释放同步状态时，会唤醒后继节点，后继节点将会在获取同步状态成功时将自己设置为首节点
+            * 设置为head，不用CAS来保证，原因是已经获取了锁
+      * 独占式同步状态的获取与释放
+         * 获取
+            * 使用CAS使得入队串行化
+            * accquireQueued：死循环尝试获取同步状态
+               * 只有前驱节点是头节点才能获取同步状态
+                  * 头节点获取同步状态，释放之后，唤醒后继
+                  * 维护FIFO
+             ```java
+             public final accquire(int arg) {
+                 if (!tryAccquire(arg)
+                    && accuqireQueued(add(Witer(Node.EXCLUSIVE), arg)))
+                    sefinterrupt();
+             } 
+     
+         * 释放
+             ```java
+             public final boolean release(int arg) {
+                if (tryRelease(arg)) {
+                    Node h = head;
+                    if (h != null && h.waitStatus != 0) {
+                        unparkSuccessor(h);
+                    }
+                    return true;
+                return false;
+                }
+             }
+      * 共享式同步状态的获取与释放
+         * accqurieShared(int arg) 
+         * releaseShared(int arg)
+         * 支持多个线程同时访问并发组件
+            * 如Semaphore
+      * 独占式超时获取同步状态
+         * doAccqureNanos(int arg, long nanosTimeout)
+         
 
 
 
