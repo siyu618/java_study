@@ -786,8 +786,40 @@
    * AtomicIntegerFieldUpdater
    * AtomicLongFieldUpdater
    * AtomicStampedReference
+   
+**Chapter 8 Java中的工具类**
 
+*8.1 等待做线程文成的CountDownLatch*
+   * CountDownLatch允许一个或多个线程等待其他线程完成操作
+      * 不可重新初始化
 
+*8.2 同步屏障CyclicBarrier*
+   * 让一组线程达到一个屏障（同步点）是被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障拦截的线程才能继续运行。 
+      * CyclicBarrier(n);
+      * CyclicBarrier(n, Runnable action); 优先执行action
+   * 应用场景
+      * 应用于多线程计算数据，最后合并计算结果的场景。 
+   * CyclicBarrier VS. CountDownLatch
+      * CountDownLatch 只能使用一次，CyclicBarrier可重置
+      * CyclicBarrier 提供
+         * getNumberWaiting
+         * isBroken
+
+*8.3 控制并发线程数的Semaphore*
+   * 应用场景
+      * 用作流量控制
+      * acquire + release
+   * 其他方法
+      * int availablePermits()
+      * int getQueueLength()
+      * boolean hasQueuedThreads()
+      * Collection getQueuedThreads()
+      
+*8.4 线程间交换数据*
+   * 用于线程间协作的工具类
+   * 可以用户遗传算法
+   * 可用户校对工作
+   * exchange(V x, long timeout, TimeUnit unit)
 
 
 
