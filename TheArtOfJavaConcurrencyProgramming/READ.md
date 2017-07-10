@@ -622,6 +622,132 @@
          * signal：将线程从等待队列移动到同步队列
  
 
+** Chapter 6 java并发容器和框架**
+
+*6.1 ConcurrentHashMap的实现原理与使用*
+   * 为什么要使用ConcurrentHashMap
+      * 并发编程中使用HashMap可能会导致程序死循环，而线程安全的HashTable又效率低
+      * 线程不安全的HashMap
+         * entry列表形成唤醒结构
+      * 效率低下的HashTable
+         * 使用Synchronized来同步
+         * 所有操作使用同一把锁
+      * ConcurrentHashMap的锁分段技术可有效替身并发访问率
+         * 使用锁分段技术
+         * 数据一段一段的存储，每个段一把锁
+   * ConcurrentHashMap的结构(JDK1.7)
+      * concurrentHashMap->Segment[] (可重入锁)->HashEntry[] (存储数据, 链式)
+      * concurrentHashMap的初始化 
+         * 初始化segment数组（默认16）
+         * 初始化segmentShift和segmentMask
+         * 初始化每个segment
+      * 定位segment
+         * 对元素的hashCode再hash
+      * ConcurrentHashMap的操作
+         * get
+            ```java
+            public V get(Object key) { 
+               int hash = hash(key.hashCode());
+               return segmentFro(hash).get(key, hash);
+            }
+         * put：扩容，如何扩容
+         * size：volatile，modCount
+   * ConcurrentHashMap（JDK1.8）
+      * 取消segments字段，直接使用transient volatile HashEntry<K,V>[] table保存数据，采用table元素作为锁，从而实现对每一行数据加锁，进一步减少并发冲突的概率
+      * 将原先的table数组 + 单向链表的数据结构，变为table数组+单向链表+红黑树数据结构
+         * 单向链表长度为8，则使用红黑树存储
+ 
+*6.2 ConcurrentLinkedQueue*
+   * 非阻塞队列：使用CAS实现
+   * 结构：head + tail
+   * 入队：将入队节点添加到队列的尾部
+      * 定位尾节点
+      * 使用CAS算法将入队节点设置为尾节点的next节点
+      * 其中tail节点不一定是最后一个节点，有可能是倒数第二个节点
+      * HOPS
+   * 出队
+      * HOPS + CAS
+       
+*6.3 Java中的阻塞队列*
+   * 什么是阻塞队列
+      * 阻塞插入阻塞移除     
+      
+      |方法/处理方式|抛出异常|返回特殊值|一直阻塞|超时退出|
+      |---|---|---|---|---|
+      |插入方法|add(e)|offer(e)|put(e)|offer(e, time, unit)|
+      |移除方法|remove()|pool()|take()|poll(time,unit)|
+      |检查方法|element()|peek()|不可用|不可用|
+   * Java里面的阻塞队列
+      * ArrayBlockingQueue
+         * 用数组实现的有界阻塞队列，遵循FIFO
+         * 默认情况下不保证线程公平的访问队列
+            * 保证公平则会降低吞吐量
+      * LinkedBlockingQueue
+         * 用链表实现的有界阻塞队列
+            * FIFO
+            * 默认最大长度为Integer.MAX_VALUE
+      * PriorityBlockingQueue
+         * 支持优先级的无界阻塞队列
+      * DelayQueue
+         * 使用PriorityQueue实现
+         * 只有延时期满是才能从队列中提取元素
+         * 使用场景：
+            * 缓存系统设计：使用DelayQueue保存缓存元素的有效期
+            * 定时任务调度
+         * 实现delay接口
+         * 实现延时阻塞队列
+      * SynchronousQueue
+         * 不存储元素的阻塞队列
+         * 支持公平访问
+         * 适合传递性场景
+      * LinkedTransferQueue
+         * 由链表结构组成的无界则色TransferQueue队列
+      * LinkedBlockingDeque
+   * 阻塞队列的实现原理
+      * 使用通知模式实现
+         * unsafe.park
+         
+*6.4 Fork/Join框架*
+   * 什么是Fork/Join框架
+      * JDK 1.7提供的用于并行执行任务的框架
+         * 有点像分治
+         * 本地的MapReduce
+   * 工作窃取算法
+      * 某个线程从其他队列里窃取任务来执行。
+         * 每个线程负责一个任务队列（双端队列）
+         * 一个线程完成其任务队列之后，在其他队列中尾部获取任务来执行
+      * 优点
+         * 充分利用线程进行并行计算，减少了线程间的竞争
+      * 缺点
+         * 某些情况下存在竞争
+         * 该算法消耗了更多的线程资源，对个线程和多个双端队列
+   * Fork/Join框架的设计
+      * 分割任务：大人物分割成小任务
+      * 执行任务合并结果
+         * 分割的子任务分别放在双端队列里，然后几个线程从双端队列中获取任务执行
+         * 子任务执行完的结果都统一放在一个队列里
+         * 启动一个线程从队列中取数据，合并这些数据
+      * ForkJoinTask
+         * RecursiveAction：用于没有返回结果的任务
+         * RecursiveTask：用于有返回结果的任务
+      * ForkJoinPool
+         * ForkJoinTask需要通过ForkJoinPool来执行
+   * 使用Fork/Join框架
+   * Fork/Join框架的异常处理
+      * ForkJoinTask提供了isCompletedAbnormally()方法
+      * task.getException()
+   * Fork/Join框架的实现原理
+      * ForkJoinPool 由ForkJoinTask素组和ForkJoinWorkerThread数组组成
+      * ForkJoinTask的fork方法实现原理
+         * 调用fork时，会挑用ForkJoinWorkerThread的pushTask方法异步地执行这个任务
+            * 如何做到异步的？？？
+      * ForkJoinTask的join方法实现原理
+         * doJoin
+         
+         
+      
+         
+         
 
 
 
