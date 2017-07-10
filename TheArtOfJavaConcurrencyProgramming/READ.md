@@ -744,10 +744,48 @@
       * ForkJoinTask的join方法实现原理
          * doJoin
          
+**Chapter 7 Java中的13个原子操作类**
+
+*7.1 原子更新基本类型类* 
+   * AtomicBoolean
+   * AtomicInteger
+   * AtomicLong
+      * addAndGet
+      * compareAndSet
+      * getAndIncrement
+      * lazySet
+      * getAndSet
+      ```java
+      public final int getAndIncrement() {
+         for (;;) {
+             int current = get();
+             int next = current + 1;
+             if (compareAndSet(current, next)) {
+                 return current;
+              }
+         }
+      }
+      public final boolean compareAndSet(int expect, int update) {
+        return unsafe.compareAndSwapInt(this, vaueOffset, expcet, update);
+      }
+    ```
+*7.2 原子更新数组*
+   * AtomicIntegerArray
+   * AtomicLongArray
+   * AtomicReferenceArray
+   * AtomicIntegerArray
+      * int addAndGet(int i, int delta)：以原子方式将输入值与数组中索引i的元素相加
+      * boolean compareAndSet(int i , int except, int update)
          
-      
-         
-         
+*7.3 原子更新引用类型*
+   * AtomicReference：原子更新引用类型
+   * AtomicReferenceFieldUpdater：原子更新引用类型里的字段
+   * AtomicMarkableReference：原子更新带有标记为的引用类型
+
+*7.4 原子更新字段类*
+   * AtomicIntegerFieldUpdater
+   * AtomicLongFieldUpdater
+   * AtomicStampedReference
 
 
 
