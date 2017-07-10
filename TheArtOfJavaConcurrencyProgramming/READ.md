@@ -820,7 +820,89 @@
    * 可以用户遗传算法
    * 可用户校对工作
    * exchange(V x, long timeout, TimeUnit unit)
+   
 
+**Chapter 9 Java中的线程池**
+
+* 合理使用线程池的好处
+   * 降低资源消耗
+   * 提高响应速度
+   * 提高线程的可管理性
+
+*9.1 线程池的实现原理*
+   * 线程池处理流程
+      * 1.线程池判断核心线程池里的线程时候都在执行任务。若不是则创建一个新的工作线程来执行任务，若是则进入下一个流程
+      * 2.线程池判断工作队列是否已满。若未满，则将新提交的任务存储在工作队列里面；若满，则进入下一个流程
+      * 3.线程池判断线程池的线程是否都处于工作状态。若否，则创建一个新的线程来执行任务；若是，则交个饱和策略来处理这个任务
+   * ThreadPoolExecutor.execute的执行逻辑
+      * 1.如果当前运行的线程少于corePoolSize，则创建新线程来执行任务（执行这一步需要获取全局锁，因为要更新workers）
+      * 2.如果运行线程数等于或多于corePoolSiz，则将任务加入到BlockingQueue
+      * 3.如果无法将任务加入BlockingQueue（队列已满），则创建新线程来处理（这一步也要获取全局锁）
+      * 4如果创建新线程将使得当前运行的超出maximumPoolSize，任务将被拒绝，并调用RejectedExecutionHandler.rejectedExecution()来执行
+   * 工作线程
+      * 线城池创建线程是，会将线程封装成工作线程Worker，worker在执行完成第一个任务（如果有的话），会循环获取工作队列里面的任务来执行。
+
+*9.2 线程池的使用*
+   * 创建
+      ```java
+      new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, milliseconds, runnableTaskQueue, handler);
+      ```
+      * corePoolSize：线程池基本大小
+         * prestartAllCoreThreads()方法会提前创建并启动所有的基本线程
+      * runnableTaskQueue：用于保存等待执行的任务的阻塞队列
+         * ArrayBlockingQueue：有界阻数据塞队列，FIFO
+         * LinkedBlockingQueue：有界阻链表塞队列，FIFO，吞吐量高于ArrayBlockingQueue
+            * 在Executors.newFixedThreadPool中使用
+         * SynchronousQueue：不存储元素的阻塞队列，吞吐量通常高于LinkedBlockingQueue
+            * 在Executors.newCachedThreadPool中使用
+         * PriorityBlockingQueue：具有优先级的无界阻塞队列
+      * maximumPoolSize：线程池允许创建的最大线程数。如果队列满，且已创建的线程数少于对打线程数，则线程池会再创建新的线程执行任务。
+         * 如果使用无界队列，这个参数就没有效果了。
+      * ThreadFactory：创建线程的工厂，一般创建有名的线程，使用guava
+         ```java
+         new ThreadFactoryBuilder.setNameFormat("XXX-task-%d").build();
+        ```
+      * RejectedExecutionHandler( 饱和策略)：当队列和线程池都满的时候，说明线程池处于饱和状态，这时候对于新任务的策略
+         * AbortPolicy：直接跑出异常，默认的策略
+         * CallerRunsPolicy：只用提交者所在的线程来运行任务
+         * DiscardOldestPolicy：丢弃队列里最旧的任务，并执行当前任务
+         * DiscardPolicy：不处理，丢弃掉
+         * 亦可以自定义来实现RejectedExecutionHandler接口。
+      * keepAliveTime：线程活动保存时间，线程池的工作线程空闲后，保持存货的时间。
+         * 任务多，且每个任务执行时间短，可以调大时间，提高线程的利用率
+      * TimeUnit：keepAliveTime的单位
+   * 向线程池提交任务
+      * execute：提交不需要返回值的任务
+      * submit：提交有返回值的任务
+   * 关闭线程池
+      * shutdown
+         * 遍历工作线程，然后调用interrupt
+         * 设置线程池状态为SHUTDOWN
+      * shutdownNow
+         * 遍历工作线程，然后调用interrupt
+         * 设置线程池状态为STOP，尝试停止所有正在执行或暂停任务的线程，并返回执行任务的列表
+      * isShutdown
+      * isTerminated
+   * 合理地配置线程池
+      * 任务的性质：CPU密集型，IO密集型还是混合型任务
+         * CPU密集型：尽量少的线程，Ncpu + 1
+         * IO密集型，尽量多的线程，Ncpu * 2
+         * 混合型：分多个线程池
+      * 任务的优先级：高、中和低
+      * 任务的执行时间：长、中和短
+      * 任务的依赖性：是否依赖其他系统资源，如数据库连接
+      * 建议使用有界队列
+         * **能增加系统的稳定性和预警能力**
+   * 线程池监控
+      * taskCount：线程池需要执行的任务数量
+      * completedTaskCount：线程池在运行过程中已经完成的任务数量，小于或等于taskCount
+      * largestPoolSize：线程池里曾经创建过的最大线程数量
+      * getPoolSize：线城池的线程数量
+      * getActiveCount：获取活动的线程数量
+      * 通过基层线程池定义来自定义线程池
+         * beforeExecute
+         * afterExecute
+         * terminated
 
 
 
