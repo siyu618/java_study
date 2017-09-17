@@ -72,6 +72,8 @@
         <io.codis.jodis.jodis.version>0.3.0</io.codis.jodis.jodis.version>
         <com.esotericsoftware.kryo.version>3.0.3</com.esotericsoftware.kryo.version>
         <redis.clients.jedis.version>2.8.0</redis.clients.jedis.version>
+        <zkclient.version>0.1</zkclient.version>
+        <curator.version>4.0.0</curator.version>
     </properties>
 
     <dependencies>
@@ -79,6 +81,29 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-framework -->
+            <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-recipes -->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-test</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.github.sgroschupf/zkclient -->
+            <dependency>
+                <groupId>com.github.sgroschupf</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zkclient.version}</version>
+            </dependency>
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
