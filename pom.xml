@@ -29,6 +29,7 @@
         <module>codis</module>
         <module>hystrix</module>
         <module>design_pattern</module>
+        <module>producer-consumer</module>
     </modules>
 
     <properties>
