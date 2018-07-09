@@ -30,6 +30,8 @@
         <module>hystrix</module>
         <module>design_pattern</module>
         <module>producer-consumer</module>
+        <module>distribute-architecture</module>
+        <module>netty-the-definitive-guide</module>
     </modules>
 
     <properties>
