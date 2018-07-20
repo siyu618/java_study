@@ -80,9 +80,11 @@
         <zkclient.version>0.1</zkclient.version>
         <curator.version>4.0.0</curator.version>
         <hystrix-core.version>1.5.13</hystrix-core.version>
+        <netty.version>4.0.36.Final</netty.version>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -101,6 +103,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-framework -->
             <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-recipes -->
             <dependency>

@@ -14,5 +14,12 @@
     <artifactId>netty-the-definitive-guide</artifactId>
     <version>1.0.0</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+    </dependencies>
+
     
 </project>
