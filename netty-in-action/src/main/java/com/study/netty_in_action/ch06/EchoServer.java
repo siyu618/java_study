@@ -45,7 +45,7 @@ public class EchoServer {
 
                             ch.pipeline().addLast(new EchoOutHandler1());
                             ch.pipeline().addLast(new EchoOutHandler2());
-//https://blog.csdn.net/tianjun2012/article/details/53786223  TODO: 
+//https://blog.csdn.net/tianjun2012/article/details/53786223  TODO:
                         }
                     });
             // 最后绑定服务器等待直到绑定完成，调用sync()方法会阻塞直到服务器完成绑定,然后服务器等待通道关闭，因为使用sync()，所以关闭操作也会被阻塞。
