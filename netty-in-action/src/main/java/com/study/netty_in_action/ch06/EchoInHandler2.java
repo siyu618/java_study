@@ -25,7 +25,8 @@ public class EchoInHandler2 extends ChannelInboundHandlerAdapter {
         System.out.println("server向client发送数据");
         String currentTime = new Date(System.currentTimeMillis()).toString();
         ByteBuf resp = Unpooled.copiedBuffer(currentTime.getBytes());
-        ctx.channel().write(resp);
+        ctx.channel().write(resp); // return this.tail.write(msg);
+        // ctx.write(resp); //will call findContextOutbound(), in this function it wll call ctx.prev
 
     }
 
