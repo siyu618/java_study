@@ -33,6 +33,7 @@
         <module>distribute-architecture</module>
         <module>netty-the-definitive-guide</module>
         <module>netty-in-action</module>
+        <module>netty-in-action</module>
     </modules>
 
     <properties>
