@@ -33,7 +33,7 @@
         <module>distribute-architecture</module>
         <module>netty-the-definitive-guide</module>
         <module>netty-in-action</module>
-        <module>netty-in-action</module>
+        <module>kafka-test</module>
     </modules>
 
     <properties>
@@ -83,9 +83,14 @@
         <curator.version>4.0.0</curator.version>
         <hystrix-core.version>1.5.13</hystrix-core.version>
         <netty.version>4.0.36.Final</netty.version>
+        <kafka.vesion>0.10.2.2</kafka.vesion>
     </properties>
 
     <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka -->
+
+
 
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -105,6 +110,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka_2.10</artifactId>
+                <version>${kafka.version}</version>
+            </dependency>
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-all</artifactId>
