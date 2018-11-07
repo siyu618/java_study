@@ -1,14 +1,12 @@
 package com.study.paxos_zookeeper.chapter5.curator;
 
 import com.study.ZKConfig;
-import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.barriers.DistributedBarrier;
 import org.apache.curator.retry.ExponentialBackoffRetry;
-import sun.util.locale.provider.TimeZoneNameUtility;
 
-import java.util.concurrent.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by tianyuzhi on 17/9/17.

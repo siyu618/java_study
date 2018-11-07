@@ -7,6 +7,7 @@ import java.util.Optional;
  */
 public class OptionalTest {
     public static void main(String[] args) {
+        System.out.println(null instanceof Boolean);
         OptionalTest optionalTest = new OptionalTest();
         Integer v1 = null;
         Integer v2 = new Integer(10);
