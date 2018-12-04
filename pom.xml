@@ -34,12 +34,16 @@
         <module>netty-the-definitive-guide</module>
         <module>netty-in-action</module>
         <module>kafka-test</module>
+        <module>flink</module>
+        <module>service-loader</module>
+        <module>concurrent-tools</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <lombok.version>1.16.16</lombok.version>
+        <flink.version>1.6.2</flink.version>
         <testng.version>6.1.1</testng.version>
         <commons-io.version>2.4</commons-io.version>
         <gson.version>2.6.2</gson.version>
@@ -84,6 +88,7 @@
         <hystrix-core.version>1.5.13</hystrix-core.version>
         <netty.version>4.0.36.Final</netty.version>
         <kafka.vesion>0.10.2.2</kafka.vesion>
+        <junit.version>4.13-beta-1</junit.version>
     </properties>
 
     <dependencies>
@@ -110,6 +115,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- https://mvnrepository.com/artifact/junit/junit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>org.apache.kafka</groupId>
                 <artifactId>kafka_2.10</artifactId>
@@ -205,6 +217,29 @@
                 <artifactId>hystrix-core</artifactId>
                 <version>${hystrix-core.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-java</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-streaming-java_2.11</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-clients_2.11</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-gelly -->
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-gelly_2.11</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+
+
         </dependencies>
 
     </dependencyManagement>
