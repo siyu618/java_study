@@ -7,6 +7,9 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @Description Used to replace System.currentMill() under high TPS.
+ * Refer to
+ *    * http://pzemtsov.github.io/2017/07/23/the-slow-currenttimemillis.html
+ *    * https://blog.csdn.net/wojiaoguchenghuanye/article/details/79801170
  * @author siyu
  */
 public class SystemClock {
