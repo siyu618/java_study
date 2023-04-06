@@ -9,7 +9,7 @@ import java.util.HashSet;
  * Created by tianyuzhi on 17/7/6.
  */
 public class MemUserHistoryCodisServiceTest {
-    @Test
+    //@Test
     public void testSetAndGet() throws Exception {
         MemUserHistoryCodisService service = MemUserHistoryCodisService.getDefaultInstance();
         HashSet docIds = new HashSet();

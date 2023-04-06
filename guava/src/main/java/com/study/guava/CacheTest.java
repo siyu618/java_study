@@ -3,7 +3,6 @@ package com.study.guava;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import javafx.scene.CacheHint;
 import lombok.Getter;
 import lombok.Setter;
 

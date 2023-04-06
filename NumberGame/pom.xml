@@ -9,7 +9,7 @@
     <version>1.0.0</version>
 
     <properties>
-        <lombok.version>1.16.16</lombok.version>
+        <lombok.version>1.18.26</lombok.version>
         <testng.version>6.10</testng.version>
     </properties>
 
